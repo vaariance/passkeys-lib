@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    // Enable latest features
+    "allowJs": false,
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleDetection": "force",
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
+    "composite": true,
+    "declaration": true,
+    "noEmit": false,
+    "sourceMap": true,
+
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "outDir": "dist",
+    "rootDir": ".",
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "passkeys-lib-expo",
+  "version": "0.1.0",
+  "description": "Passkeys credential handler library for rn/expo apps ",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "passkeys",
+    "passkeys-lib-expo",
+    "CredentialHandler"
+  ],
+  "repository": "https://github.com/vaariance/passkeys-lib",
+  "bugs": {
+    "url": "https://github.com/vaariance/passkeys-lib/issues"
+  },
+  "author": "Peter Anyaogu <peter@variance.space> (code-z2)",
+  "license": "MIT",
+  "homepage": "https://github.com/vaariance/passkeys-lib#readme",
+  "dependencies": {
+    "passkeys-lib": "*"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "expo-module-scripts": "^4.0.2",
+    "expo": "~52.0.0",
+    "react-native": "0.76.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

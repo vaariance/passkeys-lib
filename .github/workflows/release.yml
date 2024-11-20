@@ -36,11 +36,11 @@ jobs:
       - name: Install Dependencies
         run: bun install
 
-      - name: CI prepare expo lib
-        run: bun run ci:prepare
-
       - name: Build
         run: bun run build
+
+      - name: CI prepare expo lib
+        run: bun run ci:prepare
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

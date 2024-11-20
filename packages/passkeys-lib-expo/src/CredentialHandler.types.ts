@@ -1,11 +1,11 @@
 import { NativeModule } from "expo";
 import {
-  AttestationOptions,
-  EventTypeMap,
-  PublicKeyCredential,
-  AuthenticatorAttestationResponse,
-  AssertionOptions,
-  AuthenticatorAssertionResponse,
+  type AttestationOptions,
+  type EventTypeMap,
+  type PublicKeyCredential,
+  type AuthenticatorAttestationResponse,
+  type AssertionOptions,
+  type AuthenticatorAssertionResponse,
   CredentialHandlerModule as DefaultHandler,
 } from "passkeys-lib";
 

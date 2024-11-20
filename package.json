@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "postinstall": "bash ./scripts/postinstall.sh",
+    "ci:prepare": "turbo ci:prepare",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",

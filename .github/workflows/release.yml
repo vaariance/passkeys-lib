@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -23,8 +27,17 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
       - name: Install Dependencies
         run: bun install
+
+      - name: CI prepare expo lib
+        run: bun run ci:prepare
 
       - name: Build
         run: bun run build

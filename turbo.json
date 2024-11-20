@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "ci:prepare": {},
     "build": {
       "inputs": ["$TURBO_DEFAULT", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],

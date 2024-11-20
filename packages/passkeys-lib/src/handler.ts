@@ -188,5 +188,3 @@ export const CredentialHandlerModule = (
 
   return Object.assign(moduleObject, helpers, mainFunctions);
 };
-
-export * from "./types";

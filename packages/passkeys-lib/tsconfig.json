@@ -20,9 +20,9 @@
     "sourceMap": true,
 
     "resolveJsonModule": true,
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "./src",
 
     // Best practices
     "strict": true,

@@ -1,32 +1,170 @@
 # passkeys-lib-expo
 
-Passkeys credential handler library for rn/expo apps
+Native passkeys (WebAuthn) credential handler library for React Native and Expo apps.
 
-# API documentation
+## Installation
 
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/passkeys-lib-expo/)
-- [Documentation for the main branch](https://docs.expo.dev/versions/unversioned/sdk/passkeys-lib-expo/)
+### Managed Expo Projects
 
-# Installation in managed Expo projects
-
-For [managed](https://docs.expo.dev/archive/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
-
-# Installation in bare React Native projects
-
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
-
-### Add the package to your npm dependencies
-
+```bash
+npx expo install passkeys-lib-expo
 ```
+
+### Bare React Native Projects
+
+1. Install the package:
+
+```bash
 npm install passkeys-lib-expo
 ```
 
-### Configure for Android
+2. iOS Setup:
 
-### Configure for iOS
+```bash
+npx pod-install
+```
 
-Run `npx pod-install` after installing the npm package.
+3. Android Setup:
+No additional setup required.
 
-# Contributing
+## Usage
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+```typescript
+import CredentialHandlerModule, { 
+  type CredentialHandlerModuleType,
+  toBase64Url, 
+} from "passkeys-lib-expo";
+
+// Initialize
+const credentialManager: CredentialHandlerModuleType = CredentialHandlerModule;
+
+// Register a new passkey
+const register = async () => {
+  const result = await credentialManager.register({
+    attestation: "none",
+    challenge: toBase64Url("challenge"),
+    rp: {
+      id: "your-domain.com",
+      name: "Your App"
+    },
+    user: {
+      displayName: "User Name",
+      id: toBase64Url("user-id"),
+      name: "user@your-domain.com"
+    },
+    timeout: 60000
+  });
+};
+
+// Authenticate with passkey
+const authenticate = async () => {
+  const result = await credentialManager.authenticate({
+    challenge: toBase64Url("challenge"),
+    timeout: 60000,
+    userVerification: "required",
+    rpId: "your-domain.com"
+  });
+};
+```
+
+## API Reference
+
+### CredentialHandlerModule
+
+#### Methods
+
+##### `register(options: AttestationOptions<string>)`
+
+Creates a new passkey credential.
+
+```typescript
+type AttestationOptions<T> = {
+  challenge: T;
+  rp: {
+    id: string;
+    name: string;
+  };
+  user: {
+    id: T;
+    name: string;
+    displayName: string;
+  };
+  timeout?: number;
+  attestation?: AttestationConveyancePreference;
+  authenticatorSelection?: AuthenticatorSelectionCriteria;
+  excludeCredentials?: PublicKeyCredentialDescriptor<T>[];
+  preferImmediatelyAvailableCred?: boolean;
+};
+```
+
+##### `authenticate(options: AssertionOptions<string>)`
+
+Authenticates using an existing passkey.
+
+```typescript
+type AssertionOptions<T> = {
+  challenge: T;
+  rpId: string;
+  timeout?: number;
+  userVerification?: UserVerificationRequirement;
+  allowCredentials?: PublicKeyCredentialDescriptor<T>[];
+  preferImmediatelyAvailableCred?: boolean;
+};
+```
+
+#### Events
+
+access events via `CredentialHandlerModule.events`:
+
+```typescript
+// Registration Events
+onRegistrationStarted: (callback: (event) => void) => void
+onRegistrationComplete: (callback: (event) => void) => void
+onRegistrationFailed: (callback: (event) => void) => void
+
+// Authentication Events
+onAuthenticationStarted: (callback: (event) => void) => void
+onAuthenticationSuccess: (callback: (event) => void) => void
+onAuthenticationFailed: (callback: (event) => void) => void
+```
+
+usage:
+
+```typescript
+CredentialHandlerModule.events.onRegistrationStarted((event) => {
+  // do something when registration starts
+});
+
+CredentialHandlerModule.events.onRegistrationComplete((event) => {
+// do something when registration is complete
+})
+```
+
+#### Default Configuration
+
+Access default settings via `CredentialHandlerModule.defaultConfiguration`:
+> default configurations cannot be modified.
+
+```typescript
+{
+  TIMEOUT: number;
+  ATTESTATION: AttestationConveyancePreference;
+  AUTHENTICATOR_ATTACHMENT: AuthenticatorAttachment;
+  REQUIRE_RESIDENT_KEY: boolean;
+  RESIDENT_KEY: ResidentKeyRequirement;
+  USER_VERIFICATION: UserVerificationRequirement;
+  PUB_KEY_CRED_PARAM: PublicKeyCredentialParameters;
+}
+```
+
+## Utilities
+
+The package includes utility functions for handling passkey data:
+
+```typescript
+import { toBase64Url, fromBase64Url, base64UrlToBuffer } from "passkeys-lib-expo";
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

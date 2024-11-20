@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import CredentialHandlerModule, {
   type CredentialHandlerModuleType,
+  toBase64Url,
 } from "passkeys-lib-expo";
 
 const rpData =
@@ -30,14 +31,14 @@ export default function HomeScreen() {
   const register = async () => {
     const result = await credentialManager.register({
       attestation: "none",
-      challenge: btoa("register me"),
+      challenge: toBase64Url("register me"),
       rp: {
         id: rpId,
         name: rpName,
       },
       user: {
         displayName: "user",
-        id: btoa("user id"),
+        id: toBase64Url("user id"),
         name: `user@${rpId}`,
       },
       timeout: 60000,
@@ -47,7 +48,7 @@ export default function HomeScreen() {
 
   const authenticate = async () => {
     const result = await credentialManager.authenticate({
-      challenge: btoa("sign this"),
+      challenge: toBase64Url("sign this"),
       timeout: 60000,
       userVerification: "required",
       rpId: rpId,

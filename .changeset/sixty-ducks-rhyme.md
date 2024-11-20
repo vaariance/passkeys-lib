@@ -1,0 +1,6 @@
+---
+"passkeys-lib": patch
+"passkeys-lib-expo": patch
+---
+
+create passkey library for expo apps, add support for EXPO sdk 52 and react-native new architecture, implement utility functions for base64url encoding and decoding, add strict types for web and native modules. leverage credential manager API on native and navigator.credential on web

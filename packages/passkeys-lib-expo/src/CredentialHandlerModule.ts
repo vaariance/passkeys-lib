@@ -14,7 +14,7 @@ const nativeModule =
   requireNativeModule<CredentialHandlerModule>("CredentialHandler");
 
 const moduleObjects = {
-  defaultConfiguraton: {
+  defaultConfiguration: {
     TIMEOUT: nativeModule.TIMEOUT,
     ATTESTATION: nativeModule.ATTESTATION as AttestationConveyancePreference,
     AUTHENTICATOR_ATTACHMENT:
@@ -87,10 +87,12 @@ const mainFunctions = {
   },
 };
 
-export default Object.assign(moduleObjects, mainFunctions, {
+const nativeHandler = Object.assign(moduleObjects, mainFunctions, {
   addListener: nativeModule.addListener,
   removeListeners: nativeModule.removeListeners,
   removeAllListeners: nativeModule.removeAllListeners,
   removeSubscription: nativeModule.removeSubscription,
   emit: nativeModule.emit,
 });
+
+export default nativeHandler;

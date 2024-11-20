@@ -1,7 +1,7 @@
 import AuthenticationServices
 
 @available(iOS 16.0, *)
-class CredentialHandler: NSObject, ASAuthorizationControllerPresentationContextProviding,
+class CredentialManager: NSObject, ASAuthorizationControllerPresentationContextProviding,
     ASAuthorizationControllerDelegate
 {
     // MARK: - Continuations for Async/Await

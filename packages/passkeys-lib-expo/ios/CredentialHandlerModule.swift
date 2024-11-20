@@ -1,17 +1,18 @@
 import ExpoModulesCore
+import AuthenticationServices
 
 @available(iOS 16.0, *)
 public class CredentialHandlerModule: Module {
 
   // MARK: - Properties
-  private var credentialHandler: CredentialHandler?
+  private var credentialManager: CredentialManager?
 
   public func definition() -> ModuleDefinition {
 
     Name("CredentialHandler")
 
     OnCreate {
-      self.credentialHandler = CredentialHandler()
+      self.credentialManager = CredentialManager()
     }
 
     Constants([
@@ -131,10 +132,10 @@ public class CredentialHandlerModule: Module {
       let uiAnchor = await MainActor.run {
         UIApplication.shared.windows.first { $0.isKeyWindow }
       }
-      guard let credentialHandler = self.credentialHandler else {
+      guard let credentialManager = self.credentialManager else {
         throw CustomErrors.invalidState(state: "Credential manager is not initialized")
       }
-      let result = try await credentialHandler.authenticate(
+      let result = try await credentialManager.authenticate(
         getOptions: getOptions,
         preferImmediatelyAvailableCredentials: prefersImmediatelyAvailableCred,
         anchor: uiAnchor)
@@ -154,10 +155,10 @@ public class CredentialHandlerModule: Module {
       let uiAnchor = await MainActor.run {
         UIApplication.shared.windows.first { $0.isKeyWindow }
       }
-      guard let credentialHandler = self.credentialHandler else {
+      guard let credentialManager = self.credentialManager else {
         throw CustomErrors.invalidState(state: "Credential manager is not initialized")
       }
-      let result = try await credentialHandler.register(
+      let result = try await credentialManager.register(
         createOptions: createOptions,
         preferImmediatelyAvailableCredentials: prefersImmediatelyAvailableCred,
         anchor: uiAnchor)

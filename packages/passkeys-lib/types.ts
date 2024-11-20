@@ -60,8 +60,9 @@ export type ExclusiveCredentials = {
 };
 
 type ExclusiveCredentialsB64 = {
-  items: Pick<PublicKeyCredentialDescriptor, "type" | "transports"> &
-    { id: string }[];
+  items: (Pick<PublicKeyCredentialDescriptor, "type" | "transports"> & {
+    id: string;
+  })[];
 };
 
 export interface CreateCredentialOptions {

@@ -26,7 +26,7 @@ const EventEmitter = (): EventEmitter => {
       listener: (event: EventTypeMap[T]) => void
     ): Subscription {
       if (!listeners[eventName]) {
-        listeners[eventName] = new Set<any>();
+        listeners[eventName] = new Set<never>();
       }
       listeners[eventName].add(listener);
 
@@ -62,7 +62,7 @@ export const CredentialHandlerModule = (
 ) => {
   const moduleObject = {
     // Constants
-    defaultConfiguraton: { ...Constants },
+    defaultConfiguration: { ...Constants },
 
     // Events
     events: {

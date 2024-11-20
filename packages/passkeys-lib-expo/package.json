@@ -1,6 +1,6 @@
 {
   "name": "passkeys-lib-expo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Passkeys credential handler library for rn/expo apps ",
   "main": "build/index.js",
   "types": "build/index.d.ts",

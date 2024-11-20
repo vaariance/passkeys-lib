@@ -1,5 +1,13 @@
 # passkeys-lib-expo
 
+## 0.1.2
+
+### Patch Changes
+
+- 58ee174: export utils from expo module, fix file exports and update readme
+- Updated dependencies [58ee174]
+  - passkeys-lib@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

@@ -9,9 +9,9 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/example-flutter/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/apps/example-flutter/build" />
       <excludeFolder url="file://$MODULE_DIR$/apps/example-flutter/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/passkeys-lib-flutter/example/build" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/passkeys-lib-flutter/example/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/passkeys-lib-flutter/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/example/.dart_tool" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

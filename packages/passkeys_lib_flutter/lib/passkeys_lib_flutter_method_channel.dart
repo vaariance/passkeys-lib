@@ -15,3 +15,4 @@ class MethodChannelPasskeysLibFlutter extends PasskeysLibFlutterPlatform {
     return version;
   }
 }
+

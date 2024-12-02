@@ -1,5 +1,4 @@
-package com.variance.passkeys_lib_flutter
-
+package com.variance.passkeys_lib_flutter.constants
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

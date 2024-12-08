@@ -25,6 +25,7 @@ class CredentialMethodCallHandler(
     private val errorHandler: ErrorHandler,
     private val activityProvider: () -> Activity?
 ) {
+
     fun handleMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             "register" -> handleRegister(call.arguments as Map<*, *>, result)

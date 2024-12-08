@@ -95,3 +95,5 @@ data class GetCredentialOptions(
     @SerialName("rpId")
     val rpId: String
 )
+
+@Serializable

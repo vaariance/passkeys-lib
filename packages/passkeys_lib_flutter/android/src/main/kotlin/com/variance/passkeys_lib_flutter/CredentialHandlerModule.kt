@@ -6,11 +6,13 @@ class CredentialHandlerModule : FlutterPlugin, MethodCallHandler, ActivityAware 
     private var activity: Activity? = null
 
     private lateinit var methodCallHandler: CredentialMethodCallHandler
+    private var eventSink: EventChannel.EventSink? = null
+
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         val credentialManager = CredentialManager.create(binding.applicationContext)
         val parser = CredentialParser()
-        val operationManager = CredentialOperationManager(credentialManager)
+        val operationManager = CredentialOperationManager(credentialManager, eventEmitter=::sendEvent)
         val errorHandler = ErrorHandler()
 
         methodCallHandler = CredentialMethodCallHandler(
@@ -21,7 +23,16 @@ class CredentialHandlerModule : FlutterPlugin, MethodCallHandler, ActivityAware 
 
         channel = MethodChannel(binding.binaryMessenger, "credential_handler")
         channel.setMethodCallHandler(this)
+
+        eventChannel = EventChannel(binding.binaryMessenger, "credential_handler/events")
+        evenrtChannel.setStreamHandler(object: EventChannel.StreamHandler {
+            override fun onListen(arguments: Any?, eventSink: EventChannel.EventSink?) {
+                this.eventSink = eventSink
+            }
+        })
     }
+
+
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
@@ -45,5 +56,8 @@ class CredentialHandlerModule : FlutterPlugin, MethodCallHandler, ActivityAware 
 
     override fun onDetachedFromActivity() {
         activity = null
+    }
+    fun sendEvent(event: Map<String, Any>) {
+        eventSink?.success(event)
     }
 }

@@ -1,6 +1,6 @@
 package com.variance.passkeys_lib_flutter
 
-class CredentialHandlerModule : FlutterPlugin, MethodCallHandler, ActivityAware {
+class PasskeysLibFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null
@@ -21,7 +21,7 @@ class CredentialHandlerModule : FlutterPlugin, MethodCallHandler, ActivityAware 
             errorHandler
         ) { activity }
 
-        channel = MethodChannel(binding.binaryMessenger, "credential_handler")
+        channel = MethodChannel(binding.binaryMessenger, "passkeys_lib_flutter")
         channel.setMethodCallHandler(this)
 
         eventChannel = EventChannel(binding.binaryMessenger, "credential_handler/events")

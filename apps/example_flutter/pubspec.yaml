@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  passkeys_lib_flutter:
+    path: ../../packages/passkeys_lib_flutter
 
 
   # The following adds the Cupertino Icons font to your application.

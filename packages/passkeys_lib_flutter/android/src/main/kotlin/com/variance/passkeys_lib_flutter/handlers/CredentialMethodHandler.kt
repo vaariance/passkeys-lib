@@ -4,10 +4,9 @@ package com.variance.passkeys_lib_flutter.handlers
 import android.app.Activity
 import com.google.gson.Gson
 import com.variance.passkeys_lib_flutter.Manger.CredentialOperationManager
-import com.variance.passkeys_lib_flutter.Parsers.CredentialParsers
-import com.variance.passkeys_lib_flutter.Parsers.CredentialParser
-import com.variance.passkeys_lib_flutter.constants.CredentialConstants
-import com.variance.passkeys_lib_flutter.errors.ErrorHandler
+import com.variance.passkeys_lib_flutter.Parsers.*
+import com.variance.passkeys_lib_flutter.constants.*
+import com.variance.passkeys_lib_flutter.handlers.ErrorHandler
 import com.google.gson.reflect.TypeToken
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -20,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CredentialMethodCallHandler(
-    private val parser: CredentialParser,
+    private val parser: CredentialParsers,
     private val operationManager: CredentialOperationManager,
     private val errorHandler: ErrorHandler,
     private val activityProvider: () -> Activity?

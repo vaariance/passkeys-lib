@@ -37,8 +37,6 @@ flutter:
       android:
         package: com.variance.passkeys_lib_flutter
         pluginClass: PasskeysLibFlutterPlugin
-      ios:
-        pluginClass: PasskeysLibFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

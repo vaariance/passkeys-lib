@@ -1,14 +1,15 @@
 package com.variance.passkeys_lib_flutter.Manger
 
-import com.variance.passkeys_lib_flutter.constants.CredentialConstants
+import com.variance.passkeys_lib_flutter.constants.*
+import com.variance.passkeys_lib_flutter.handlers.*
 import android.app.Activity
 import androidx.credentials.GetPublicKeyCredentialOption
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.CredentialManager
 import androidx.credentials.CreateCredentialResponse
 import androidx.credentials.CreatePublicKeyCredentialRequest
+import androidx.credentials.PublicKeyCredential
 import androidx.credentials.GetCredentialRequest
-import com.variance.passkeys_lib_flutter.CredentialHandlerModule
 import com.google.gson.Gson
 
 class CredentialOperationManager(private val credentialManager: CredentialManager, private val eventEmitter: (Map<String, Any?>) -> Unit) {
@@ -22,21 +23,24 @@ class CredentialOperationManager(private val credentialManager: CredentialManage
         try {
             val request = CreatePublicKeyCredentialRequest(Gson().toJson(options))
             val credentialResponse = credentialManager.createCredential(activity, request)
+//            val credentialId = (credentialResponse.credential as PublicKeyCredential).id
             emitEvent(
                 "credentialCreationStarted",
                 "success",
-                 mapOf("credential" to credentialResponse.credentialId),
+                mapOf("credential" to credentialResponse),
                 null
             )
             return credentialResponse
-        } catch (e: Exception) (
+        } catch (e: Exception) {
             emitEvent(
                 "credentialCreationFailed",
                 "error",
                 null,
                 e.localizedMessage
             )
-        )
+
+            throw e
+        }
 
     }
 
@@ -53,14 +57,16 @@ class CredentialOperationManager(private val credentialManager: CredentialManage
 
            )
            return response
-       } catch (e: Exception)(
+       } catch (e: Exception){
            emitEvent(
                "credentialRetrievalFailed",
                "error",
                null,
                e.localizedMessage
            )
-       )
+
+        throw e
+       }
 
     }
 }

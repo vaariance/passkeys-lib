@@ -97,3 +97,7 @@ data class GetCredentialOptions(
 )
 
 @Serializable
+data class CreateCredentialResponse(
+    @SerialName("id")
+    val id: String
+)

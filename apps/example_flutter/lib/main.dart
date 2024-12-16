@@ -87,9 +87,11 @@ class _PasskeysHomePageState extends State<PasskeysHomePage> {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _registerPasskey,
-              child: const Text('Register Passkey'),
+            Center(
+              child: ElevatedButton(
+                onPressed: _registerPasskey,
+                child: const Text('Register Passkey'),
+              ),
             ),
             const SizedBox(height: 10),
             // ElevatedButton(

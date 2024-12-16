@@ -1,7 +1,6 @@
-library passkeys_lib_flutter;
 import 'package:passkeys_lib_flutter/src/passkeys_lib_flutter_model.dart';
 
-import 'src/passkeys_lib_flutter_platform_interface.dart';
+import 'passkeys_lib_flutter_platform_interface.dart';
 
 class PasskeysLibFlutter {
   /// Register or create a passkey by providing [RegisterOptions]

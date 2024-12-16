@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:passkeys_lib_flutter/passkeys_lib_flutter_model.dart';
+import 'package:passkeys_lib_flutter/src/passkeys_lib_flutter_model.dart';
 
 import 'passkeys_lib_flutter_platform_interface.dart';
 
